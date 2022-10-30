@@ -1,0 +1,21 @@
+{
+	"cSpell.ignorePaths": [
+		"poetry.lock",
+		".git/objects",
+		".venv",
+		"**/fixtures/**",
+		"**/migrations/**"
+	],
+	"evenBetterToml.formatter.crlf": true,
+	"evenBetterToml.formatter.trailingNewline": true,
+	"material-icon-theme.activeIconPack": "none",
+	"material-icon-theme.folders.theme": "specific",
+	"python.analysis.autoImportCompletions": true,
+	"python.analysis.autoSearchPaths": true,
+	"python.analysis.diagnosticMode": "workspace",
+	"python.analysis.importFormat": "relative",
+	"python.analysis.indexing": true,
+	"python.analysis.useLibraryCodeForTypes": true,
+	"python.analysis.typeCheckingMode": "basic",
+	"python.formatting.provider": "black"
+}

@@ -1,0 +1,64 @@
+[tool.poetry]
+authors     = ["Mugdha Arunim Ahmed <mugdhaarunimahmed2017@gmail.com>"]
+description = ""
+name        = "django-addresses"
+packages    = [{ include = "django_addresses" }]
+readme      = "README.md"
+version     = "0.1.0"
+
+  [tool.poetry.dependencies]
+  django = "^4.1.2"
+  python = "^3.10"
+
+  [tool.poetry.group.dev.dependencies]
+  black         = "^22.10.0"
+  django-stubs  = { extras = ["compatible-mypy"], version = "^1.12.0" }
+  isort         = { extras = ["requirements-deprecated-finder"], version = "^5.10.1" }
+  mypy          = ">=0.9.30,<0.970"
+  poethepoet    = "^0.16.4"
+  pylint        = { version = "2.14.5", python = ">=3.7.2,<4.0" }
+  pylint-django = "^2.5.3"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires      = ["poetry-core"]
+
+[tool.poe.poetry_hooks]
+post_add     = "export"
+post_install = "export"
+post_lock    = "export"
+post_remove  = "export"
+post_update  = "export"
+
+[tool.poe.tasks]
+dev    = { cmd = "python manage.py runserver", env = { DEBUG = "True" } }
+export = { shell = "poetry export --without-hashes -o requirements.txt" }
+
+[tool.pyright]
+exclude = [".venv"]
+
+[tool.pylint.main]
+django-settings-module = "config.settings"
+ignore                 = ["migrations", "__init__.py"]
+load-plugins           = "pylint_django"
+
+[tool.pylint.format]
+max-line-length = "79"
+
+[tool.isort]
+default_section   = "THIRDPARTY"
+known_first_party = ["django"]
+profile           = "django"
+skip_gitignore    = true
+skip_glob         = ["**/migrations/*"]
+# known_local_folder = []
+# known_third_party  = []
+
+[tool.black]
+line-length = 79
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "config.settings"
